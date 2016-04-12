@@ -1,13 +1,18 @@
-var http = require('http');
 var express = require('express');
 var app = express();
+var http = require('http');
 
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname));
 
 var server = http.createServer(app);
-var io = require('socket.io').listen(server);
+var io = require('socket.io')
+io = io.listen(server);
+io.configure(function() {
+  io.set('transports', ['xhr-polling']);
+  io.set('polling duration', 10);
+});
 
 io.sockets.on('connection', function (socket){
 
