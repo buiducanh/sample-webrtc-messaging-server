@@ -1,11 +1,12 @@
-var static = require('node-static');
 var http = require('http');
-var file = new(static.Server)();
-var app = http.createServer(function (req, res) {
-  file.serve(req, res);
-}).listen(2013);
+var express = require('express');
+var app = express();
 
-var io = require('socket.io').listen(app);
+app.set('port', (process.env.PORT || 5000));
+
+app.use(express.static(__dirname));
+
+var io = require('socket.io').listen(http.createServer(app));
 
 io.sockets.on('connection', function (socket){
 
@@ -45,5 +46,9 @@ io.sockets.on('connection', function (socket){
 
 	});
 
+});
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
 
