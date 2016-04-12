@@ -6,7 +6,8 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname));
 
-var io = require('socket.io').listen(http.createServer(app));
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket){
 
@@ -48,7 +49,7 @@ io.sockets.on('connection', function (socket){
 
 });
 
-app.listen(app.get('port'), function() {
+server.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
