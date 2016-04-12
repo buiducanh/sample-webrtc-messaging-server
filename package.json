@@ -2,9 +2,10 @@
   "name": "codelab",
   "version": "0.0.1",
   "description": "WebRTC codelab",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,9 @@
     "webrtc",
     "codelab"
   ],
+  "engines": {
+    "node": "5.9.1"
+  },
   "author": "webrtc",
   "license": "MIT",
   "dependencies": {
